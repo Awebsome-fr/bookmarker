@@ -41,7 +41,7 @@ function sortContent() {
 		sortedArray.push(currentBookie);
 	}
 	// b. Sort the new array
-	sortedArray.sort().reverse();
+	sortedArray.sort();
 	// c. Empty the initial array
 	bookies = [];
 	// d. Then recreate it
