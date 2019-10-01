@@ -1,0 +1,182 @@
+/* --- COMMON --- */
+
+body { 
+	min-height: 100vh; /* FIREFOX ? Correction needed to maximize the popup when there are too few bookies */
+	margin: 0px;
+}
+@font-face {
+	font-family: "Questrial";
+	src: url("./resources/Questrial.woff2");
+}
+*:not(strong) { 
+	font-family: 'Questrial', sans-serif; 
+	font-weight: normal;
+	font-size: 0.95rem;
+}
+li { list-style: square; }
+
+/* --- MAIN --- */
+
+#main-nav {
+	width: 100%;
+	padding: 10px;
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 0.25fr 4.75fr 1fr;
+}
+#main-nav > div {
+	display: grid;
+	grid-template-rows: 1fr 1fr; 
+}
+#bookies-counter { 
+	margin: 0px;
+	color: #01ca86; }
+#select-input { 
+	width: 100%;
+	border: solid 1px #01ca86;
+}
+#search-form {
+	display: flex;
+	align-items: center;
+	border-left: solid 1px #01ca86;
+	border-right: solid 1px #01ca86;
+}
+#search-input {
+	width: 100%;
+	padding: 10px;
+	border: none;	
+}
+#engines {
+	padding: 10px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 10px;
+}
+.engine {
+	width: 20px;
+	height: 20px;
+	opacity: 0.25;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center;
+	transition: all 0.25s;
+}
+#google-engine {
+	background-image: url('./resources/google-logo.png'); 
+	background-size: 70%;
+}
+#qwant-engine {
+	background-image: url('./resources/qwant-logo.png'); 
+	background-size: 75%;
+}
+#lilo-engine {
+	background-image: url('./resources/lilo-logo.png'); 
+	background-size: 60%;
+}
+.engine:hover, .engine:focus {
+	transform: scale(1.5);
+	opacity: 1;
+}
+#open-about-button {
+	background-color: transparent;
+	fill: #01ca86;
+	border: none;
+}
+#open-about-button svg { transition: all 0.25s; }
+#open-about-button:hover svg {
+	transform: rotateZ(115deg) scale(1.25);	
+}
+#bookies-section {
+	min-width: 500px;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 1px;
+}
+.bookie {
+	padding: 10px;
+	text-decoration: none;
+	transition: all 0.25s;
+	opacity: 0.75;
+}
+.bkm:hover { opacity: 1; }
+.invisible { display: none; }
+
+/* --- ABOUT --- */
+
+#about-section {
+	width: 100%;
+	padding: 10px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	transition: all 0.25s;
+	transform-origin: left center;
+	background-color: #fff;
+	z-index: 2;
+}
+#form-nav {
+	display: flex;
+	justify-content: space-between;
+}
+h2 {
+	margin: 20px 0px;
+	font-size: 2em;
+	color: #01ca86;
+}
+#sets { 
+	margin-top: 5px;
+	display: grid;
+	grid-template-rows: auto;
+}
+h3 {
+	padding: 10px;
+	font-weight: normal;
+}
+.set label {
+	margin: 5px 0px;
+	display: block;
+}
+.set span {
+	position: absolute;
+	left: 15px;
+	margin-top: 5px;
+	font-size: 1.25em;
+	color: #01ca86;
+}
+.set input {
+	padding: 5px;
+	padding-left: 20px;
+	border: solid 1px #01ca86;
+}
+.set input:not(:focus):invalid {
+	box-shadow: initial;
+	border-color: orangered;
+}
+#settings-form input[type="submit"] {
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	background-color: #01ca86;
+	font-size: 1.125em;
+	color: #fff;
+}
+.closed { transform: scale(0); }
+.opened { transform: initial; }
+
+/* --- RESPONSIVE --- */
+
+@media screen and (max-width: 400px) {
+	body, #about-section { padding-bottom: 50px; } /* FIREFOX ? Fix required to avoid a cutted screen when the window is less than 400px */
+	#bookies-section { min-width: 300px; }
+	#main-nav {
+		grid-template-areas: 
+			"top . ."
+			"middle middle middle"
+			"bottom bottom bottom";
+	}
+	#select-input, #bookies-counter { text-align: left; }
+	#main-nav > div { grid-area: middle; }
+	#open-settings-button { grid-area: top; }
+	#search-form { grid-area: bottom; }
+} 
