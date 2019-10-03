@@ -1,3 +1,4 @@
+// jshint esversion: 6
 var counter = 0;
 var bookies = [];
 var folders = [];
@@ -18,7 +19,7 @@ function analyzeContent (element, folder = 'Barre personnelle') {
 
 	// Does the element have a child ?
 	if(element.children) {
-		for(children of element.children) {
+		for(let children of element.children) {
 			analyzeContent(children, element.title);
 		}
 	}
@@ -50,7 +51,7 @@ function sortContent() {
 			'title': sortedArray[i][0],
 			'folder': sortedArray[i][1],
 			'url': sortedArray[i][2]
-		}
+		};
 		bookies.push(object);
 	}
 	
@@ -61,6 +62,7 @@ function sortContent() {
 	/* FOR DEBUGGING ONLY
 	console.log('Bookmarker -> bookies and folders ordered by name'); 
 	*/
+
 }
 
 function checkSettings() {
@@ -75,15 +77,19 @@ function checkSettings() {
 	})
 	// Success : do nothing
 	.then((res) => {
+
 		/* FOR DEBUGGING ONLY
 		console.log(res);
 		*/
+
 	})
 	// Fail : create starting settings
 	.catch((rej) => {
+
 		/* FOR DEBUGGING ONLY
 		console.log(rej);
 		*/
+
 		browser.storage.local.set(
 			{
 				folder: [],
@@ -92,28 +98,31 @@ function checkSettings() {
 			}
 		)
 		.then(() => { 
+
 			/* FOR DEBUGGING ONLY
 			console.log('Bookmarker -> local settings created'); 
 			*/
-		})
-	})
+
+		});
+	});
 
 }
 
 function reviewSettings() {
 
-	// Check if local setting are sufficiently defined by adding missing folders
 	return new Promise((resolve, reject) => {
 		
 		browser.storage.local.get().then((loadedSettings) => { 
 			
-			let found = false;
+			// First : check if local setting are sufficiently defined by adding missing folders
+			let found;
 			
 			// Browse CURRENT folders
 			for(let folder of folders) {			
-				found = false;
 				
-				// Browse STORED folders to compare
+				found = false;
+
+				// Browse STORED folders
 				for(let savedFolder of loadedSettings.folder) {
 					// Found : set 'found' to true and break the loop
 					if(savedFolder === folder) {
@@ -123,14 +132,70 @@ function reviewSettings() {
 				}	
 				
 				// Missing ('found' is always false) : complete statement needed
-				if(!found) {		
+				if(!found) {
+					
 					loadedSettings.folder.push(folder);
 					loadedSettings.background.push('555555');
 					loadedSettings.font.push('FFFFFF');
+					
+					/* FOR DEBUGGING ONLY
+					console.log('Bookmarker -> the missing settings for the folder "' + folder + '" were created');
+					*/
+				
 				}
 
 			}
-			
+
+			// Second : check if there are some unnecessary folders to remove 
+			let active;
+			let indexesToRemove = [];
+
+			// Browse STORED folders
+			for(let savedFolder of loadedSettings.folder) {
+
+				active = false;
+
+				// Browse CURRENT folders
+				for(let folder of folders) {
+
+					// Found : set 'active' to true and break the loop
+					if(folder === savedFolder) {
+						active = true;
+						break;
+					}
+
+				}
+
+				// Not found ('active' is always false) : it is an unnecessary folder to remove
+				if(!active) {
+
+					indexesToRemove.push(loadedSettings.folder.indexOf(savedFolder));		
+
+					/* FOR DEBUGGING ONLY
+					console.log('Bookmarker -> Useless settings for the folder "' + savedFolder + '" found');
+					*/
+					
+				}
+
+			}
+
+			// Third : remove unnecessary folders 
+			let compArray = 0;
+
+			for(let indexToRemove of indexesToRemove) {
+
+				loadedSettings.folder.splice(indexToRemove + compArray, 1);
+				loadedSettings.background.splice(indexToRemove + compArray, 1);
+				loadedSettings.font.splice(indexToRemove + compArray, 1);
+
+				/* FOR DEBUGGING ONLY
+				console.log('Bookmarker -> Useless settings for the folder "' + loadedSettings.folder[indexToRemove + compArray] + '" were deleted');
+				*/
+
+				compArray--
+
+			}
+
 			return loadedSettings;
 
 		// Then update the local setting
@@ -140,15 +205,17 @@ function reviewSettings() {
 
 			browser.storage.local.set(settings).then(() => {
 				resolve('Bookmarker -> local settings reviewed');
-			})
+			});
 
-		})
+		});
 	
 	}).then((res) => {	
+	
 		/* FOR DEBUGGING ONLY
 		console.log(res);
 		*/
-	})
+	
+	});
 
 }
 
@@ -209,13 +276,12 @@ function filterContent (input, folder) {
 	// Target all the bookies.
 	var completeBkElms = document.getElementsByClassName('bookie');
 
-	// Create an exit variable.
-	var filteredBkElms; 
-	folder === 'Tout montrer' ?
-		// If 'folder' is 'Tout montrer' : 'filteredBkElms' equals 'completeBkElms'	
-		filteredBkElms = completeBkElms :
-		// Else, 'filteredBkElms' contains all the corresponding bookies regarding of the name of the class
-		filteredBkElms = document.getElementsByClassName(folder);
+	/* 
+	Create an exit variable
+	If 'folder' is 'Tout montrer' : 'filteredBkElms' equals 'completeBkElms'
+	Else, 'filteredBkElms' contains all the corresponding bookies regarding of the name of the class
+	*/
+	var filteredBkElms = folder === 'Tout montrer' ? completeBkElms : document.getElementsByClassName(folder);
 
 	// Set the class'invisible' to all the bookies
 	for(let bookie of completeBkElms) {
@@ -228,7 +294,7 @@ function filterContent (input, folder) {
 
 	// Then remove the class 'invisible' on the matches and update the bookies counter
 	for(let bookie of filteredBkElms) {
-		if(bookie['id'].toLowerCase().indexOf(input.toLowerCase()) >= 0) {
+		if(bookie.id.toLowerCase().indexOf(input.toLowerCase()) >= 0) {
 			bookie.classList.remove('invisible');
 			bookie.classList.add('visible');
 			updateCounter(++counter); 
@@ -241,11 +307,8 @@ function filterContent (input, folder) {
 function updateCounter (value = 0) {
 
 	// Update the number of bookies there are matching the user's selection
-	let word;
 	counter = value;
-	value > 1 ?
-		word = 'bookies' :
-		word = 'bookie';
+	let word = value > 1 ? 'bookie' : 'bookies';
 	document.getElementById('bookies-counter').textContent = counter + ' ' + word;
 
 }
@@ -270,7 +333,7 @@ function submitQuery (search, engine) {
 		}
 
 		// Open the search results into a new tab 
-		!browser.tabs.create({ url: baseUrl + search });
+		browser.tabs.create({ url: baseUrl + search });
 
 	}
 
@@ -316,9 +379,7 @@ function createForm () {
 		for(let field of ['font', 'background']) {
 			
 			let labelElm = document.createElement('label');
-			field === 'font' ?
-				labelElm.textContent = 'Police' :
-				labelElm.textContent = 'Fond';
+			labelElm.textContent = field === 'font' ? 'Police' : 'Fond';
 	
 			let hashtagElm = document.createElement('span');
 			hashtagElm.textContent = '#';
@@ -335,7 +396,7 @@ function createForm () {
 					targetElm.style.color = '#' + e.target.value :
 					targetElm.style.backgroundColor = '#' + e.target.value;
 				e.target.value = e.target.value.toUpperCase();
-			}
+			};
 			
 			setElm.appendChild(labelElm);
 			setElm.appendChild(hashtagElm);
@@ -373,11 +434,15 @@ function updateSettings() {
 	
 	// Update the settings into the local storage then actualize the display
 	browser.storage.local.set(settings).then(() => { 
+		
+		applySettings(settings);
+		
 		/* FOR DEBUGGING ONLY
 		console.log('Bookmarker -> local settings updated'); 
 		*/
-		applySettings(settings);
+		
 		toggleSettingsForm();
+
 	});
 	
 }
@@ -401,8 +466,8 @@ function attachEvents () {
 	
 	// Submit a search query to the selected engine
 	let engineElms = document.getElementsByClassName('engine');
-	for(let engine of engineElms) {
-		engine.onclick = (e) => {
+	for(let engineElm of engineElms) {
+		engineElm.onclick = (e) => {
 			submitQuery(document.getElementById('search-input').value, e.target.id);
 			e.preventDefault();
 		};

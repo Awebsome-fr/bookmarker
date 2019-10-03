@@ -1,3 +1,4 @@
+// jshint esversion: 6
 // Load the bookies tree then analyse its structure and order its content by name 
 browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 	analyzeContent(bookies[0]); 
@@ -12,6 +13,6 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 			createForm();
 			applySettings();
 			attachEvents();
-		})
-	})
-})
+		});
+	});
+});
