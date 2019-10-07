@@ -389,7 +389,7 @@ function createForm () {
 			inputElm.value = settings[field][i];
 			inputElm.setAttribute('pattern', '[0-9a-fA-F]{6}');
 			inputElm.oninput = (e) => {
-				let targetElm = e.target.parentNode.querySelector('h3');
+				let targetElm = e.target.parentNode.querySelector('h4');
 				field === 'font' ?
 					targetElm.style.color = '#' + e.target.value :
 					targetElm.style.backgroundColor = '#' + e.target.value;
@@ -422,7 +422,7 @@ function updateSettings() {
 	// Target all the sets from the setting form then add their values to newSetting
 	let sFolders = document.getElementsByClassName('set');
 	for(let sFolder of sFolders) {
-		newSettings.folder.push(sFolder.querySelector('h3').textContent);
+		newSettings.folder.push(sFolder.querySelector('h4').textContent);
 		newSettings.font.push(sFolder.querySelector('.font').value);
 		newSettings.background.push(sFolder.querySelector('.background').value);
 	}
