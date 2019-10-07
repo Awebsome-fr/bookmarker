@@ -1,21 +1,13 @@
 // jshint esversion: 6
-var counter = 0;
-var bookies = [];
-var folders = [];
-var settings;
+var counter = 0, bookies = [], folders = [], settings;
 
 function analyzeContent (element, folder = 'Barre personnelle') {
 	
-	// The element have an URL : it's a bookie
-	if(element.url) {
-		element.folder = folder;
-		bookies.push(element);
-	}
-
-	// The element doesn't have an URL : it's a folder
-	else {
-		folders.push(element.title);
-	}
+	element.url ?
+		// The element have an URL : it's a bookie
+		[element.folder = folder, bookies.push(element)]:
+		// The element doesn't have an URL : it's a folder
+		[folders.push(element.title)];
 
 	// Does the element have a child ?
 	if(element.children) {
@@ -75,6 +67,7 @@ function checkSettings() {
 				reject('Bookmarker -> local settings not found');
 		});
 	})
+
 	// Success : do nothing
 	.then((res) => {
 
@@ -192,7 +185,7 @@ function reviewSettings() {
 				console.log('Bookmarker -> Useless settings for the folder "' + loadedSettings.folder[indexToRemove + compArray] + '" were deleted');
 				*/
 
-				compArray--
+				compArray--;
 
 			}
 
@@ -306,10 +299,13 @@ function filterContent (input, folder) {
 
 function updateCounter (value = 0) {
 
-	// Update the number of bookies there are matching the user's selection
+	// On the inferface, update the number of bookies there are matching the user's selection
 	counter = value;
-	let word = value > 1 ? 'bookie' : 'bookies';
-	document.getElementById('bookies-counter').textContent = counter + ' ' + word;
+	let countMess = counter > 1 ? value + ' bookies' : value + ' bookie';
+	document.getElementById('bookies-counter').textContent = countMess;
+	document.getElementById('pop-info').textContent = counter > 0 ? 
+		'Sélectionnez un bookie ou pressez la touche Entrée pour ouvrir ' + countMess + '.': 
+		'Aucun résultat. Pressez la touche Entrée ou sélectionnez un moteur pour rechercher sur le web.';
 
 }
 
@@ -337,8 +333,8 @@ function submitQuery (search, engine) {
 
 	}
 
-	// Engine not sent : open all the visible bookies
-	else {
+	// Engine not sent AND there are active bookies : open all the visible bookies
+	else if(!engine && counter > 0) {
 
 		let activeBkElms = document.getElementsByClassName('visible');
 		
@@ -348,12 +344,14 @@ function submitQuery (search, engine) {
 
 	}
 
-	// Reset the user's selection
-	document.getElementById('select-input').children[0].selected = 'selected';
-	filterContent('', 'Tout montrer');
-	let searchInpElm = document.getElementById('search-input');
-	searchInpElm.value = '';
-	searchInpElm.focus();
+	// Engine not sent AND there are NO active bookies : open the search results into a new tab with recursive 
+	else {
+
+		submitQuery(search, 'qwant-engine');
+
+	}
+
+	resetSelection();
 
 }
 
@@ -369,7 +367,7 @@ function createForm () {
 		setElm.classList.add('set');
 
 		// With a title
-		let titleElm = document.createElement('h3');
+		let titleElm = document.createElement('h4');
 		titleElm.textContent = settings.folder[i];
 		titleElm.style.color = '#' + settings.font[i]; 
 		titleElm.style.backgroundColor = '#' + settings.background[i];
@@ -441,58 +439,24 @@ function updateSettings() {
 		console.log('Bookmarker -> local settings updated'); 
 		*/
 		
-		toggleSettingsForm();
-
 	});
 	
 }
 
 function toggleSettingsForm () {
+
 	// Hide / unhide the settings form 
 	document.getElementById('about-section').classList.toggle("opened");
+
 }
 
-function attachEvents () {
-	
-	// Search matches among the bookies
-	document.getElementById('search-input').oninput = (e) => {
-		filterContent(e.target.value, document.getElementById('select-input').value); 
-	};
-	
-	// Show only the bookies from the selected folder
-	document.getElementById('select-form').onchange = (e) => {
-		filterContent(document.getElementById('search-input').value, e.target.value);
-	};
-	
-	// Submit a search query to the selected engine
-	let engineElms = document.getElementsByClassName('engine');
-	for(let engineElm of engineElms) {
-		engineElm.onclick = (e) => {
-			submitQuery(document.getElementById('search-input').value, e.target.id);
-			e.preventDefault();
-		};
-	}
-	// Or open the visible bookies in new tabs
-	document.getElementById('search-form').onsubmit = (e) => {
-		submitQuery(document.getElementById('search-input').value);
-		e.preventDefault();
-	};
-	
-	// Open the about section by clicking the button
-	document.getElementById('open-about-button').onclick = () => {
-		toggleSettingsForm();
-	};
-	
-	// Close the about section by clicking the link
-	document.getElementById('close-about-a').onclick = (e) => {
-		e.preventDefault();
-		toggleSettingsForm();
-	};
-	
-	// Update new settings after submitting the form
-	document.getElementById('settings-form').onsubmit = (e) => {
-		e.preventDefault();
-		updateSettings();
-	};
+function resetSelection() {
+
+	// Reset the user's selection
+	document.getElementById('select-input').children[0].selected = 'selected';
+	filterContent('', 'Tout montrer');
+	let searchInpElm = document.getElementById('search-input');
+	searchInpElm.value = '';
+	searchInpElm.focus();
 
 }
