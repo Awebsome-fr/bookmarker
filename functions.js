@@ -1,24 +1,29 @@
-// jshint esversion: 6
 var counter = 0, bookies = [], folders = [], settings;
 
-function analyzeContent (element, folder = 'Barre personnelle') {
-	
-	element.url ?
-		// The element have an URL : it's a bookie
-		[element.folder = folder, bookies.push(element)]:
-		// The element doesn't have an URL : it's a folder
-		[folders.push(element.title)];
+// !! TODO : test argument folder with no bookie ! //
 
-	// Does the element have a child ?
-	if(element.children) {
-		for(let children of element.children) {
-			analyzeContent(children, element.title);
-		}
+function analyzeContent (element, folder = 'Barre personnelle') {
+
+	// The element have an URL : it's a bookie.
+	if(element.url) {
+		element.folder = folder;
+		bookies.push(element);
 	}
 
-	/* FOR DEBUGGING ONLY
-	console.log('Bookmarker -> bookies and folders isolated'); 
-	*/
+	// The element doesn't have an URL : it's a folder.
+	else {
+		// Banish the root folder.
+		if(element.title != 'Barre personnelle') {
+			folders.push(element.title);
+		}
+	}
+	
+	// Does the current folder have a child ?
+	if(element.children) {
+		for(let child of element.children) {
+			analyzeContent(child, element.title);
+		}
+	}
 	
 }
 
