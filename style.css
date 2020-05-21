@@ -1,15 +1,13 @@
-/* COMMON */
 body { 
-	font-size: 1.125em;
 	font-weight: normal;
-	min-height: 100vh; /* FIREFOX ? Correction needed to maximize the popup when there are too few bookies */
+	min-height: 100vh;
 }
-@font-face {
-	font-family: "Questrial";
-	src: url("./resources/Questrial.woff2") format('woff');
+body,  button, input, select { 
+	font-family: sans-serif;
 }
-body, input, select, button { font-family: "Questrial"; }
-p { line-height: 18px; }
+p { 
+	line-height: 18px;
+}
 
 /* NAV */
 #main-nav {
@@ -153,10 +151,10 @@ input[type="submit"] {
 }
 
 /* TRANSITIONS - ANIMATIONS */
-.engine, #open-about-button svg, .bookie, #about-section { transition: all 0.25s; }
+#open-about-button svg, .bookie, #about-section { transition: all 0.25s; }
 #open-about-button:hover svg { transform: rotateZ(115deg) scale(1.25); }
 .engine:hover, .engine:focus, .bookie:hover, .bookie:focus { opacity: 1; }
-.engine:hover, .engine:focus { transform: scale(1.5); }
+#reset-button:hover, .engine:hover, .engine:focus { transform: scale(1.5); }
 .closed { transform: scale(0); }
 .opened { transform: initial; }
 
