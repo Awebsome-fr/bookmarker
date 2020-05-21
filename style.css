@@ -9,18 +9,18 @@ p {
 	line-height: 18px;
 }
 
-/* NAV */
+/* navigation */
 #main-nav {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 0.25fr 4.75fr 1fr;
 	padding: 10px;
 }
-#bookies-counter { 
-	color: #01ca86;
-	margin: 0 0 2px 0;
+#open-about-button {
+	background-color: transparent;
+	border: none;
+	fill: #01ca86;
 }
-#select-input { border: solid 1px #01ca86; }
 #search-form {
 	align-items: center;
 	border-left: solid 1px #01ca86;
@@ -39,34 +39,36 @@ p {
 }
 #engines {
 	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: repeat(3, 1fr);
-	padding: 10px;
+	grid-gap: 5px;
+	grid-template-columns: repeat(4, 1fr);
+	padding: 5px;
 }
 .engine {
 	background-color: transparent;
-	background-position: center;
-	background-repeat: no-repeat;
-	height: 20px;
 	opacity: 0.5;
-	width: 20px;
+	background: url('./assets/engines.png') no-repeat top left;
+	background-size: 27px auto;
+	height: 27px;
+	width: 27px;
 }
-#google-engine {
-	background-image: url('./resources/google-logo.png'); 
-	background-size: 70%;
+#ecosia {
+	background-position: 0 -32px;
 }
-#qwant-engine {
-	background-image: url('./resources/qwant-logo.png'); 
-	background-size: 75%;
+#qwant {
+	background-position: 0 -95px;
 }
-#lilo-engine {
-	background-image: url('./resources/lilo-logo.png'); 
-	background-size: 60%;
+#duckduckgo {
+	background-position: 0 0;
 }
-#open-about-button {
-	background-color: transparent;
-	border: none;
-	fill: #01ca86;
+#google {
+	background-position: 0 -63px;
+}
+#bookies-counter { 
+	color: #01ca86;
+	margin: 0 0 2px 0;
+}
+#select-input {
+	border: solid 1px #01ca86;
 }
 #pop-info {
 	background-color: #01ca86;
@@ -75,7 +77,7 @@ p {
 	padding: 10px;
 }
 
-/* BOOKIES */
+/* bookies */
 #bookies-section {
 	display: grid;
 	grid-gap: 1px;

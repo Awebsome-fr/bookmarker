@@ -8,11 +8,11 @@
 	"description": "Gagnez en productivité, épargnez la planète. Avec Bookmarker, personnalisez et regroupez instantanément vos bookies (favoris) par dossier, ciblez rapidement vos adresses préférées ou partez à l'assaut du web grâce aux moteurs de recherche intégrés.",
 	"version": "1.0.3",
 	"icons": {
-		"48": "./resources/bookmarker-logo-48px.png",
-		"96": "./resources/bookmarker-logo-96px.png"
+		"48": "./assets/bookmarker-logo-48px.png",
+		"96": "./assets/bookmarker-logo-96px.png"
 	},
 	"browser_action": {
-		"default_icon": "./resources/bookmarker-logo-48px.png",
+		"default_icon": "./assets/bookmarker-logo-48px.png",
 		"default_title": "Bookmarker",
 		"default_popup": "./popup.html",
 		"browser_style": true

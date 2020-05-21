@@ -322,14 +322,17 @@ function submitQuery (search, engine) {
 		// State baseUrl and determinate the initial path
 		let baseUrl;
 		switch(engine) {
-			case 'qwant-engine':
+			case 'ecosia':
+				baseUrl = 'https://www.ecosia.org/search?q=';
+				break;
+			case 'qwant':
 				baseUrl = 'https://www.qwant.com/?q=';
 				break;
-			case 'google-engine':
-				baseUrl = 'https://www.google.fr/search?q=';
+			case 'duckduckgo':
+				baseUrl = 'https://duckduckgo.com/?q=';
 				break;
-			case 'lilo-engine':
-				baseUrl = 'https://search.lilo.org/results.php?q=';
+			case 'google':
+				baseUrl = 'https://www.google.fr/search?q=';
 				break;
 		}
 
