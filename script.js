@@ -9,16 +9,18 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 	// Then check if local settings exist (otherwise, create it).
 	checkSettings().then(() => { 
 
-		// Then review and correct the local settings by adding the missing folders.
+		// Then review and correct the local settings by adding the missing folders, attach the events and start.
 		reviewSettings().then(() => {
 			
-			// Then attach the events.
+			// Search matches (searchInput) in the specific folder (folderSelect).
 			UI.searchInput.oninput = () => {
 				filterContent(UI.searchInput.value, UI.folderSelect.value); 
-			};	
+			};
+			// Limit visibility to a specific folder (folderSelect).
 			UI.folderForm.onchange = () => {
 				filterContent(UI.searchInput.value, UI.folderSelect.value);
 			};
+			// Reset the current search selection.
 			document.getElementById('reset').onclick = () => {
 				resetSelection();
 			};
@@ -29,23 +31,25 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 					e.preventDefault();
 				};
 			}
-			// Or open the visible bookies in new tabs.
+			// Or open the visible bookie(s) in new tab(s).
 			UI.searchForm.onsubmit = (e) => {
 				submitQuery(UI.searchInput.value);
 				e.preventDefault();
 			};
+			// Open settings.
 			document.getElementById('open-settings').onclick = () => {
 				toggleSettings();
 			};
+			// Close and save the settings.
 			document.getElementById('save-settings').onclick = () => {
 				toggleSettings();
 				updateSettings();
 			};
+			// Close settings without saving.
 			document.getElementById('close-settings').onclick = () => {
 				toggleSettings();
 			};
 			
-			// And start.
 			appendContent();
 			createForm();
 			applySettings();
