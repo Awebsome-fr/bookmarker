@@ -8,15 +8,34 @@ body,  button, input, select {
 p { 
 	line-height: 18px;
 }
+a {
+	color: inherit;
+}
 
 /* navigation */
+
+nav {
+	background-color: #fff;
+	left: 0;
+	padding: 10px;
+	right: 0;
+	top: 0;
+	z-index: 2;
+}
 #main-nav {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 0.25fr 4.75fr 1fr;
-	padding: 10px;
+	position: sticky;
 }
-#open-about-button {
+#settings-nav {
+	align-items: center;
+	background-color: #fff;
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+}
+#open-settings {
 	background-color: transparent;
 	border: none;
 	fill: #01ca86;
@@ -75,6 +94,7 @@ p {
 	color: #fff;
 	margin: 0;
 	padding: 10px;
+	grid-column: 1 / 4;
 }
 
 /* bookies */
@@ -83,7 +103,7 @@ p {
 	grid-gap: 1px;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	min-width: 500px;
-	padding: 10px;
+	padding: 0 10px 10px 10px;
 }
 .bookie {
 	align-items: center;
@@ -92,22 +112,20 @@ p {
 	padding: 10px;
 	text-decoration: none;
 }
-.invisible { display: none; }
+.invisible { 
+	display: none;
+}
 
-/* ABOUT */
-#about-section {
+/* config */
+#settings {
 	background-color: #fff;
-	padding: 10px;
+	padding: 40px 10px 10px 10px;
 	position: absolute;
 	right: 0;
 	top: 0;
-	transform-origin: left center;
 	z-index: 2;
 }
-#form-nav {
-	display: flex;
-	justify-content: space-between;
-}
+
 h2 {
 	border-bottom: solid 1px #01ca86;
 	color: #01ca86;
@@ -118,7 +136,9 @@ h2 {
 	grid-template-rows: auto;
 	margin-top: 5px;
 }
-h3 { font-size: 1em; }
+h3 { 
+	font-size: 1em;
+}
 h4 {
 	font-size: 1em;
 	font-weight: normal;
@@ -134,27 +154,30 @@ span {
 	margin-top: 5px;
 	position: absolute;
 }
+svg {
+	pointer-events: none;
+}
 .set input {
 	border: solid 1px #01ca86;
 	padding: 5px;
-	padding-left: 15px;
+	padding-left: 20px;
 }
 .set input:not(:focus):invalid {
 	border-color: orangered;
 	box-shadow: initial;
 }
-input[type="submit"] {
+#save-settings {
 	background-color: #01ca86;
-	border: none;
 	border-radius: 3px;
+	border: none;
 	color: #fff;
 	font-size: 1.05em;
 	padding: 10px;
 }
 
 /* TRANSITIONS - ANIMATIONS */
-#open-about-button svg, .bookie, #about-section { transition: all 0.25s; }
-#open-about-button:hover svg { transform: rotateZ(115deg) scale(1.25); }
+#open-settings svg, .bookie { transition: all 0.25s; }
+#open-settings:hover svg { transform: rotateZ(115deg) scale(1.25); }
 .engine:hover, .engine:focus, .bookie:hover, .bookie:focus { opacity: 1; }
 #reset-button:hover, .engine:hover, .engine:focus { transform: scale(1.5); }
 .closed { transform: scale(0); }
@@ -162,7 +185,7 @@ input[type="submit"] {
 
 /* RESPONSIVE */
 @media screen and (max-width: 400px) {
-	body, #about-section { padding-bottom: 50px; } /* FIREFOX ? Fix required to avoid a cutted screen when the window is less than 400px */
+	body, #settings { padding-bottom: 50px; } /* FIREFOX ? Fix required to avoid a cutted screen when the window is less than 400px */
 	#bookies-section { min-width: 300px; }
 	#main-nav {
 		grid-template-areas: 
@@ -173,6 +196,6 @@ input[type="submit"] {
 	#select-input, #bookies-counter { text-align: left; }
 	#select-input { width: 100%; }
 	#main-nav > div { grid-area: middle; }
-	#open-settings-button { grid-area: top; }
+	#open-settings { grid-area: top; }
 	#search-form { grid-area: bottom; }
 }

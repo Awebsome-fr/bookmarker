@@ -454,7 +454,7 @@ function updateSettings() {
 function toggleSettingsForm () {
 
 	// Hide / unhide the settings form 
-	document.getElementById('about-section').classList.toggle("opened");
+	document.getElementById('settings').classList.toggle("opened");
 
 }
 

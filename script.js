@@ -39,18 +39,18 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 				e.preventDefault();
 			};
 			// Open the about section by clicking the button
-			document.getElementById('open-about-button').onclick = () => {
+			document.getElementById('open-settings').onclick = () => {
 				toggleSettingsForm();
 			};
 			// Close the about section by clicking the link
-			document.getElementById('close-about-a').onclick = (e) => {
+			document.getElementById('close-settings').onclick = (e) => {
 				e.preventDefault();
 				toggleSettingsForm();
 			};
 			// Update new settings after submitting the form
-			document.getElementById('settings-form').onsubmit = (e) => {
-				e.preventDefault();
+			document.getElementById('save-settings').onclick = () => {
 				updateSettings();
+				toggleSettingsForm();
 			};
 
 		});
