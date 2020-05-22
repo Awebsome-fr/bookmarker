@@ -22,7 +22,8 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 				filterContent(document.getElementById('search-input').value, e.target.value);
 			};
 			// Reset the selection
-			document.getElementById('reset-button').onclick = () => {
+			document.getElementById('reset').onclick = (e) => {
+				e.preventDefault();
 				resetSelection();
 			};
 			// Submit a search query to the selected engine

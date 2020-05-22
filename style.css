@@ -5,40 +5,71 @@ body {
 body,  button, input, select { 
 	font-family: sans-serif;
 }
+
+/* texts */
+h2 {
+	border-bottom: solid 1px #01ca86;
+	color: #01ca86;
+	font-weight: normal;
+}
+h3 { 
+	font-size: 1em;
+}
+h4 {
+	font-size: 1em;
+	font-weight: normal;
+	padding: 10px;
+}
 p { 
 	line-height: 18px;
 }
 a {
 	color: inherit;
 }
+label {
+	display: block;
+	margin: 5px 0;
+}
+span {
+	color: #01ca86;
+	left: 15px;
+	margin-top: 5px;
+	position: absolute;
+}
+
+/* medias */
+svg {
+	pointer-events: none;
+}
 
 /* navigation */
-
 nav {
 	background-color: #fff;
-	left: 0;
-	padding: 10px;
-	right: 0;
 	top: 0;
 	z-index: 2;
+	position: sticky;
+	padding-top: 10px;
+	margin-bottom: 1px;
 }
 #main-nav {
 	display: grid;
 	grid-gap: 10px;
 	grid-template-columns: 0.25fr 4.75fr 1fr;
-	position: sticky;
 }
 #settings-nav {
 	align-items: center;
 	background-color: #fff;
 	display: flex;
 	justify-content: space-between;
-	position: fixed;
 }
 #open-settings {
+	align-items: center;
 	background-color: transparent;
 	border: none;
+	display: flex;
 	fill: #01ca86;
+	justify-content: center;
+	margin-right: -10px;
 }
 #search-form {
 	align-items: center;
@@ -46,11 +77,12 @@ nav {
 	border-right: solid 1px #01ca86;
 	display: flex;
 }
-#reset-button {
+#reset {
 	background-color: transparent;
 	border: none;
-	fill: #01ca86;
-	margin: 3px 10px 0 10px;
+	color: #01ca86;
+	font-size: 1.125em;
+
 }
 #search-input {
 	border: none;
@@ -59,15 +91,15 @@ nav {
 #engines {
 	display: grid;
 	grid-gap: 5px;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, auto);
 	padding: 5px;
 }
 .engine {
 	background-color: transparent;
-	opacity: 0.5;
 	background: url('./assets/engines.png') no-repeat top left;
 	background-size: 27px auto;
 	height: 27px;
+	opacity: 0.5;
 	width: 27px;
 }
 #ecosia {
@@ -92,18 +124,19 @@ nav {
 #pop-info {
 	background-color: #01ca86;
 	color: #fff;
+	font-weight: bold;
+	grid-column: 1 / 4;
 	margin: 0;
 	padding: 10px;
-	grid-column: 1 / 4;
+	text-align: center;
 }
 
 /* bookies */
-#bookies-section {
+#bookies {
 	display: grid;
 	grid-gap: 1px;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	min-width: 500px;
-	padding: 0 10px 10px 10px;
 }
 .bookie {
 	align-items: center;
@@ -112,55 +145,24 @@ nav {
 	padding: 10px;
 	text-decoration: none;
 }
-.invisible { 
-	display: none;
-}
 
-/* config */
+/* settings */
 #settings {
 	background-color: #fff;
-	padding: 40px 10px 10px 10px;
+	padding: 0 10px 10px 10px;
 	position: absolute;
 	right: 0;
 	top: 0;
 	z-index: 2;
-}
-
-h2 {
-	border-bottom: solid 1px #01ca86;
-	color: #01ca86;
-	font-weight: normal;
 }
 #sets { 
 	display: grid;
 	grid-template-rows: auto;
 	margin-top: 5px;
 }
-h3 { 
-	font-size: 1em;
-}
-h4 {
-	font-size: 1em;
-	font-weight: normal;
-	padding: 10px;
-}
-label {
-	display: block;
-	margin: 5px 0;
-}
-span {
-	color: #01ca86;
-	left: 15px;
-	margin-top: 5px;
-	position: absolute;
-}
-svg {
-	pointer-events: none;
-}
 .set input {
 	border: solid 1px #01ca86;
-	padding: 5px;
-	padding-left: 20px;
+	padding: 5px 5px 5px 20px;
 }
 .set input:not(:focus):invalid {
 	border-color: orangered;
@@ -171,31 +173,29 @@ svg {
 	border-radius: 3px;
 	border: none;
 	color: #fff;
-	font-size: 1.05em;
 	padding: 10px;
 }
 
-/* TRANSITIONS - ANIMATIONS */
-#open-settings svg, .bookie { transition: all 0.25s; }
-#open-settings:hover svg { transform: rotateZ(115deg) scale(1.25); }
-.engine:hover, .engine:focus, .bookie:hover, .bookie:focus { opacity: 1; }
-#reset-button:hover, .engine:hover, .engine:focus { transform: scale(1.5); }
-.closed { transform: scale(0); }
-.opened { transform: initial; }
 
-/* RESPONSIVE */
-@media screen and (max-width: 400px) {
-	body, #settings { padding-bottom: 50px; } /* FIREFOX ? Fix required to avoid a cutted screen when the window is less than 400px */
-	#bookies-section { min-width: 300px; }
-	#main-nav {
-		grid-template-areas: 
-			"top . ."
-			"middle middle middle"
-			"bottom bottom bottom";
-	}
-	#select-input, #bookies-counter { text-align: left; }
-	#select-input { width: 100%; }
-	#main-nav > div { grid-area: middle; }
-	#open-settings { grid-area: top; }
-	#search-form { grid-area: bottom; }
+/* animations */
+#open-settings svg, .bookie { 
+	transition: all 0.25s;
+}
+#open-settings:hover svg { 
+	transform: rotateZ(115deg) scale(1.25);
+}
+.engine:hover, .engine:focus, .bookie:hover, .bookie:focus { 
+	opacity: 1;
+}
+#reset:hover, .engine:hover, .engine:focus { 
+	transform: scale(1.5);
+}
+.closed { 
+	transform: scale(0);
+}
+.opened {
+	transform: initial;
+}
+.invisible, #bookies.invisible { 
+	display: none;
 }

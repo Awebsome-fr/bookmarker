@@ -7,15 +7,12 @@
 	</head>
 	<body>
 		<nav id="main-nav">
-			<!-- Open the about section -->
 			<button id="open-settings" title="Configurer Bookmarker">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"><path d="M24 13.616v-3.232c-1.651-.587-2.693-.752-3.219-2.019v-.001c-.527-1.271.1-2.134.847-3.707l-2.285-2.285c-1.561.742-2.433 1.375-3.707.847h-.001c-1.269-.526-1.435-1.576-2.019-3.219h-3.232c-.582 1.635-.749 2.692-2.019 3.219h-.001c-1.271.528-2.132-.098-3.707-.847l-2.285 2.285c.745 1.568 1.375 2.434.847 3.707-.527 1.271-1.584 1.438-3.219 2.02v3.232c1.632.58 2.692.749 3.219 2.019.53 1.282-.114 2.166-.847 3.707l2.285 2.286c1.562-.743 2.434-1.375 3.707-.847h.001c1.27.526 1.436 1.579 2.019 3.219h3.232c.582-1.636.749-2.69 2.027-3.222h.001c1.262-.524 2.12.101 3.698.851l2.285-2.286c-.743-1.563-1.375-2.433-.848-3.706.527-1.271 1.588-1.44 3.221-2.021zm-12 3.384c-2.762 0-5-2.239-5-5s2.238-5 5-5 5 2.239 5 5-2.238 5-5 5zm3-5c0 1.654-1.346 3-3 3s-3-1.346-3-3 1.346-3 3-3 3 1.346 3 3z"/></svg>
 			</button>
-			<!-- Search bar with search engines -->
+			<!-- Perform a search in bookies / with search engines. -->
 			<form id="search-form">
-				<bouton id="reset-button" type="reset" title="Effacer la sélection" value="x">
-					<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewbox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
-				</bouton>
+				<input id="reset" type="reset" title="Effacer la sélection" value="X" />
 				<input id="search-input" type="text" placeholder="Que recherchez vous ?" autofocus />
 				<div id="engines">
 					<a href="#" class="engine" id="ecosia" title="Recherchez avec Ecosia ; plantez des arbres !"></a>
@@ -25,20 +22,20 @@
 				</div>
 			</form>
 			<div>
-				<!-- Active bookies counter -->
+				<!-- Show the number of active bookies. -->
 				<p id="bookies-counter"></p>
-				<!-- Input to filter bookies by folder -->
+				<!-- Filter bookies by folder. -->
 				<form id="select-form">
 					<select id="select-input"></select>
 				</form>
 			</div>
+			<!-- Display informations to the user. -->
 			<p id="pop-info"></p>
 		</nav>
-		<!-- Bookies container (append with JavaScript) -->
-		<section id="bookies-section"></section>
-		<!-- The place where users can customize Bookmarker and learn more about it -->
+		<section id="bookies">
+			<!-- The bookies are added into this container with JavaScript. -->	
+		</section>
 		<section id="settings" class="closed">
-			<!-- Quick access menu -->
 			<nav id="settings-nav">
 				<div>
 					<button id="save-settings">Sauvegarder et fermer</button>
@@ -46,7 +43,7 @@
 					<a href="#" id="close-settings">Retour</a>
 				</div>
 				<div>
-					<a href="#settings-form">Personnaliser</a>
+					<a href="#customize">Personnaliser</a>
 					|
 					<a href="#how-to-use">Mode d'emploi</a>
 					|
@@ -54,35 +51,36 @@
 				</div>
 			</nav>
 			<!-- Settings form -->
-			<form id="settings-form">
+			<form id="customize">
 				<h2>Personnaliser</h2>
-				<p>Vos bookies, dossiers et sous-dossiers sont chargés depuis la <i>Barre Personnelle</i> de votre navigateur web. Modifiez leur style, observez les changements, puis sauvegardez pour appliquer ces derniers. Attention : seule la notation hexadécimale (par exemple : 09AF09) est acceptée.</p>
+				<p>Vos bookies sont chargés depuis les dossiers contenus <strong>dans</strong> la <i>Barre Personnelle</i> de votre navigateur web Firefox. Modifiez leur style, observez les changements, puis sauvegardez pour appliquer ces derniers. Attention : seule la notation hexadécimale (par exemple : 09AF09) est acceptée.</p>
 				<p><a href="https://htmlcolorcodes.com/fr/">Trouver des couleurs au format hexadécimal</a></p>
-				<div id="sets"></div>
+				<div id="sets">
+					<!-- The sets are generated into this container with JavaScript (one set per folder). -->
+				</div>
 			</form>
-			<!-- A quick guide to learn how to use Bookmarker -->
 			<article id="how-to-use">
 				<h2>Mode d'emploi</h2>
 				<h3>Retrouver un bookie</h3>
 				<p>Saisissez quelques caractères dans le champ de recherche pour isoler les bookies dont l'intitulé correspond à votre recherche, sélectionnez un dossier depuis le menu déroulant pour restreindre l'affichage aux bookies contenus dans ce seul dossier ou cliquez sur la croix pour effacer votre sélection.</p>
 				<h3>Ouvrir un ou plusieurs bookies</h3>
-				<p>Cliquez sur un bookie pour l'ouvrir dans un nouvel onglet ou appuyer sur [Entrée] depuis le champ de recherche pour ouvrir tous les bookies visibles dans des onglets séparés.</p>
+				<p>Cliquez sur un bookie pour l'ouvrir dans un nouvel onglet ou appuyer sur <kbd>[Entrée]</kbd> depuis le champ de recherche pour ouvrir tous les bookies visibles dans des onglets séparés.</p>
+				<p><strong>Prudence : cette action est susceptible d'ouvrir beaucoup d'onglets !</strong></p>
 				<h3>Rechercher sur le web</h3>
-				<p>Saisissez votre requête dans le champ de recherche puis sélectionnez Ecosia, Qwant, DuckDuckGo ou Google pour rechercher sur le web. En l'absence de bookies, pressez simplement [Entrée] depuis le champ de recherche pour utiliser Qwant.</p>
-				<h3>Astuce</h3>
+				<p>Saisissez votre requête dans le champ de recherche puis sélectionnez Ecosia, Qwant, DuckDuckGo ou Google pour rechercher sur le web. En l'absence de bookies, pressez simplement <kbd>[Entrée]</kbd> depuis le champ de recherche pour utiliser Ecosia.</p>
+				<h3>Astuces</h3>
 				<p>Naviguez au clavier !<br/>
-				[Tab] pour progresser.<br/>
-				[MAJ] + [Tab] pour revenir en arrière.<br/>
-				[Entrée] pour activer l'élément ayant le focus.</p>
+				<kbd>[Tab]</kbd> pour progresser.<br/>
+				<kbd>[MAJ]</kbd> + <kbd>[Tab]</kbd> pour revenir en arrière.<br/>
+				<kbd>[Entrée]</kbd> pour activer l'élément ayant le focus.</p>
 			</article>
-			<!-- A few words about the developer, Bookmarker and the ecology -->
 			<article id="about">
 				<h2>À propos</h2>
 				<h3>Enjeux</h3>
 				<p>Internet, ce merveilleux outil qui a réinventé notre quotidien, figure désormais parmi les plus grosses sources de pollution de la planète. Qu'il s'agisse d'alimenter ou d'entretenir ses infrastructures titanesques, de précieuses ressources lui sont injectées en continu pour répondre à nos besoins exponentiels.</p>
 				<p>En tant qu'usagers, <strong>nous avons le devoir d'apprendre à maitriser notre activité numérique pour en limiter les dégâts</strong>.</p>
-				<p>Un favori, ou marque-page, est un raccourci - un lien mémorisé - vers une page, un site web déjà découvert. Un favori permet d'accéder directement à la page, au site web en question sans avoir à reconsulter un moteurs de recherche, ce qui serait inutilement chronophage et coûteux en requêtes serveur.</p>
-				<p>Éliminer les intermédiaires grâce aux favoris, c'est <strong>diviser de manière significative l'empreinte énergétique de son activité en ligne</strong>, <strong>gagner du temps</strong> et <strong>limiter la collecte de ses données personnelles</strong>.</p>
+				<p>Un bookie (généralement appelé favori ou marque-page) est comme <strong>un trajet mémorisé vers une page web déjà découverte</strong>. Un bookie permet d'accéder directement à ce contenu sans avoir à reconsulter un moteurs de recherche pour y parvenir, ce qui est inutilement chronophage et coûteux en requêtes serveur.</p>
+				<p>Éliminer les intermédiaires grâce aux bookies, c'est <strong>diviser de manière significative l'empreinte énergétique de son activité en ligne</strong>, <strong>gagner en temps dans sa navigation au quotidien</strong> et <strong>limiter la collecte de ses données personnelles</strong>.</p>
 				<p>0 inconvénient.<br/>
 				100% avantageux.</p> 
 				<p>Prêt à donner l'exemple avec Bookmarker ?</p>
@@ -92,10 +90,9 @@
 				<p>Mes valeurs font écho aux vôtres ?<br/>
 				<a href="https://awebsome.fr/#contact">Parlons-en</a>.</p>
 				<h3>Données personnelles</h3>
-				<p>Bookmarker ne collecte <strong>aucune</strong> donnée à votre sujet. Vérifiez-le par vous-même : <a href="https://github.com/AwebsomeFr/bookmarker">le code source de l'extension est en accès libre sur GitHub</a>.</p>
+				<p>Par respect pour votre vie privée, Bookmarker ne collecte <strong>aucune</strong> donnée à votre sujet. Vérifiez-le par vous-même : <a href="https://github.com/AwebsomeFr/bookmarker">le code source de l'extension est en accès libre sur GitHub</a> ;).</p>
 			</article>
 		</section>
-		<!-- Loaded scripts -->
 		<script src="./functions.js"></script>
 		<script src="./script.js"></script>
 	</body>

@@ -239,7 +239,7 @@ function appendContent() {
 	// 1. BOOKIES
 
 	// Empty the bookies section before appending bookies
-	let sectionElm = document.getElementById('bookies-section');
+	let sectionElm = document.getElementById('bookies');
 	sectionElm.innerHTML = '';
 	for(let bookie of bookies) {
 		let crBookieElm = document.createElement('a');
@@ -355,7 +355,7 @@ function submitQuery (search, engine) {
 	// Engine not sent AND there are NO active bookies : open the search results into a new tab with recursive 
 	else {
 
-		submitQuery(search, 'qwant-engine');
+		submitQuery(search, 'ecosia');
 
 	}
 
@@ -455,6 +455,7 @@ function toggleSettingsForm () {
 
 	// Hide / unhide the settings form 
 	document.getElementById('settings').classList.toggle("opened");
+	document.getElementById('bookies').classList.toggle("invisible");
 
 }
 
