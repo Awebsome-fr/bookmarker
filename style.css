@@ -82,7 +82,6 @@ nav {
 	border: none;
 	color: #01ca86;
 	font-size: 1.125em;
-
 }
 #search-input {
 	border: none;
@@ -114,14 +113,14 @@ nav {
 #google {
 	background-position: 0 -63px;
 }
-#bookies-counter { 
+#counter { 
 	color: #01ca86;
 	margin: 0 0 2px 0;
 }
-#select-input {
+#folder-select {
 	border: solid 1px #01ca86;
 }
-#pop-info {
+#info {
 	background-color: #01ca86;
 	color: #fff;
 	font-weight: bold;
@@ -175,7 +174,6 @@ nav {
 	color: #fff;
 	padding: 10px;
 }
-
 
 /* animations */
 #open-settings svg, .bookie { 

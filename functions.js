@@ -1,5 +1,3 @@
-var counter = 0, bookies = [], folders = [], settings;
-
 function checkSettings() {
 
 	// Check if local setting are already defined
@@ -212,8 +210,8 @@ function applySettings() {
 
 function toggleSettings () {
 
-	document.getElementById('settings').classList.toggle("opened");
-	document.getElementById('bookies').classList.toggle("invisible");
+	UI.settings.classList.toggle("opened");
+	UI.bookies.classList.toggle("invisible");
 
 }
 
@@ -317,8 +315,7 @@ function appendContent() {
 	// 1. BOOKIES
 
 	// Empty the bookies section before appending bookies
-	let sectionElm = document.getElementById('bookies');
-	sectionElm.innerHTML = '';
+	UI.bookies.innerHTML = '';
 
 	// Create bookies.
 	for(let i = 0, l = bookies.length; i < l; i++) {
@@ -330,7 +327,7 @@ function appendContent() {
 		bookieElm.setAttribute('class', bookies[i].folder);
 		bookieElm.classList.add('bookie', 'visible');
 		bookieElm.textContent = bookies[i].title;
-		sectionElm.appendChild(bookieElm);				
+		UI.bookies.appendChild(bookieElm);				
 
 	}
 
@@ -339,15 +336,14 @@ function appendContent() {
 	// 2. FOLDERS
 
 	// Empty the select input before appending folders	
-	let selectInpElm = document.getElementById('select-input');
-	selectInpElm.innerHTML = '';
-	selectInpElm.innerHTML = '<option selected>Tout montrer</option>';
+	UI.folderSelect.innerHTML = '';
+	UI.folderSelect.innerHTML = '<option selected>Tout montrer</option>';
 
 	for(let i = 0, l = folders.length; i < l; i++) {	
 	
 		let optionElm = document.createElement('option');
 		optionElm.textContent = folders[i];
-		selectInpElm.appendChild(optionElm);
+		UI.folderSelect.appendChild(optionElm);
 
 	}
 
@@ -406,11 +402,10 @@ function submitQuery (search, engine) {
 
 function resetSelection() {
 
-	document.getElementById('select-input').children[0].selected = 'selected';
+	UI.folderSelect.children[0].selected = 'selected';
 	filterContent('', 'Tout montrer');
-	let searchInpElm = document.getElementById('search-input');
-	searchInpElm.value = '';
-	searchInpElm.focus();
+	UI.searchInput.value = '';
+	UI.searchInput.focus();
 
 }
 
@@ -418,8 +413,8 @@ function updateCounter (value = 0) {
 
 	counter = value;
 	let countMess = counter > 1 ? value + ' bookies' : value + ' bookie';
-	document.getElementById('bookies-counter').textContent = countMess;
-	document.getElementById('pop-info').textContent = counter > 0 ? 
+	UI.counter.textContent = countMess;
+	UI.info.textContent = counter > 0 ? 
 		'Sélectionnez un bookie ou pressez la touche Entrée pour ouvrir ' + countMess + '.': 
 		'Aucun résultat. Pressez la touche Entrée ou sélectionnez un moteur pour rechercher sur le web.';
 
