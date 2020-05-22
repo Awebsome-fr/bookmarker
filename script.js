@@ -2,7 +2,6 @@
 browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 
 	analyzeContent(bookies[0]); 
-	sortContent();
 
 }).then(() => { 
 
@@ -36,6 +35,12 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 				submitQuery(UI.searchInput.value);
 				e.preventDefault();
 			};
+
+			UI.counter.onclick = () => {
+				fromAtoZ = fromAtoZ === true ? false : true;
+				start();
+			}
+
 			// Open settings.
 			document.getElementById('open-settings').onclick = () => {
 				toggleSettings();
@@ -50,9 +55,7 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 				toggleSettings();
 			};
 			
-			appendContent();
-			createForm();
-			applySettings();
+			start();
 
 		});
 	

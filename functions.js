@@ -286,8 +286,19 @@ function sortContent() {
 		// Then store it into another array.
 		sortedArray.push(currentBookie);
 	}
+	
 	// b. Sort the new array.
-	sortedArray.sort();
+	if(fromAtoZ) {
+		sortedArray.sort(function(a, b) {
+			return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
+		});		
+	}
+	else {
+		sortedArray.sort(function(a, b) {
+			return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
+		}).reverse();	
+	}
+
 	// c. Empty the initial array.
 	bookies = [];
 	// d. Then recreate it.
@@ -422,7 +433,7 @@ function updateCounter (value = 0) {
 
 function createForm () {
 
-	let setsElm = document.getElementById('sets');
+	UI.sets.innerHTML = '';
 
 	for(let i = 0, l = settings.folder.length; i < l; i++) {
 	
@@ -466,8 +477,18 @@ function createForm () {
 
 		}
 	
-		setsElm.appendChild(setElm);
+		UI.sets.appendChild(setElm);
 
 	}
+
+}
+
+function start () {
+	
+	sortContent();
+	appendContent();
+	createForm();
+	applySettings();
+	filterContent(UI.searchInput.value, UI.folderSelect.value);
 
 }
