@@ -1,4 +1,3 @@
-// jshint esversion: 6
 // Load the bookies tree then analyse its structure and order its content by name 
 browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 	analyzeContent(bookies[0]); 
@@ -41,17 +40,17 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 			};
 			// Open the about section by clicking the button
 			document.getElementById('open-settings').onclick = () => {
-				toggleSettingsForm();
+				toggleSettings();
 			};
 			// Close the about section by clicking the link
 			document.getElementById('close-settings').onclick = (e) => {
 				e.preventDefault();
-				toggleSettingsForm();
+				toggleSettings();
 			};
 			// Update new settings after submitting the form
 			document.getElementById('save-settings').onclick = () => {
 				updateSettings();
-				toggleSettingsForm();
+				toggleSettings();
 			};
 
 		});
