@@ -288,16 +288,9 @@ function sortContent() {
 	}
 	
 	// b. Sort the new array.
-	if(fromAtoZ) {
-		sortedArray.sort(function(a, b) {
-			return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
-		});		
-	}
-	else {
-		sortedArray.sort(function(a, b) {
-			return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
-		}).reverse();	
-	}
+	sortedArray.sort(function(a, b) {
+		return a[0].toLowerCase().localeCompare(b[0].toLowerCase());
+	});		
 
 	// c. Empty the initial array.
 	bookies = [];
@@ -489,6 +482,5 @@ function start () {
 	appendContent();
 	createForm();
 	applySettings();
-	filterContent(UI.searchInput.value, UI.folderSelect.value);
 
 }

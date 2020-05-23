@@ -36,11 +36,6 @@ browser.bookmarks.getSubTree('toolbar_____').then((bookies) => {
 				e.preventDefault();
 			};
 
-			UI.counter.onclick = () => {
-				fromAtoZ = fromAtoZ === true ? false : true;
-				start();
-			}
-
 			// Open settings.
 			document.getElementById('open-settings').onclick = () => {
 				toggleSettings();

@@ -1,7 +1,5 @@
 var counter = 0, bookies = [], folders = [], settings;
 
-var fromAtoZ = true;
-
 const UI = {
 	bookies: document.getElementById('bookies'),
 	counter: document.getElementById('counter'),
