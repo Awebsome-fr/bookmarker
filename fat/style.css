@@ -95,7 +95,7 @@ nav {
 }
 .engine {
 	background-color: transparent;
-	background: url('./assets/engines.png') no-repeat top left;
+	background: url('../assets/engines.png') no-repeat top left;
 	background-size: 27px auto;
 	height: 27px;
 	opacity: 0.5;

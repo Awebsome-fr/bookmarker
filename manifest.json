@@ -14,7 +14,7 @@
 	"browser_action": {
 		"default_icon": "./assets/bookmarker-logo-48px.png",
 		"default_title": "Bookmarker",
-		"default_popup": "./popup.html",
+		"default_popup": "./min/popup.html",
 		"browser_style": true
 	},
 	"commands": {
