@@ -6,8 +6,8 @@ function buildDatas(element) {
 	*/
 	if(!element.url) {
 
-		if(element.title != 'Barre de favoris' && element.title != 'Autres favoris') {
-			folders.push(element.title);
+		if(element.id != favRootFolderIndex) {
+			user.folders.push(element.title);
 			foldersIndex++;
 		}
 	
@@ -25,8 +25,8 @@ function buildDatas(element) {
 	List element in the array "bookies" with its parent folder.
 	*/
 	else {
-		element.folder = folders[foldersIndex];
-		bookies.push(element);
+		element.folder = user.folders[foldersIndex];
+		user.bookies.push(element);
 	}
 
 }
@@ -40,12 +40,12 @@ function checkSettings() {
 		chrome.storage.local.get(null, function(settings) {
 
 			if(settings.folder === undefined) {
-				console.log('Bookmarker -> settings not found in the local storage of the navigator.');
+				// console.log('Bookmarker -> settings not found in the local storage of the navigator.');
 				reject(undefined);
 			}
 
 			else {
-				console.log('Bookmarker -> settings found in the local storage of the navigator.');
+				// console.log('Bookmarker -> settings found in the local storage of the navigator.');
 				resolve(settings);
 			}
 
@@ -68,7 +68,7 @@ function initSettings() {
 		chrome.storage.local.set(
 			settings,			
 			() => { 
-				console.log('Bookmarker -> settings initialized.'); 
+				// console.log('Bookmarker -> settings initialized.'); 
 				resolve(settings);
 			}
 		);
@@ -85,7 +85,7 @@ function reviewSettings(settings) {
 		let found;
 		
 		// Browse CURRENT folders.
-		for(let folder of folders) {			
+		for(let folder of user.folders) {			
 			
 			found = false;
 
@@ -105,7 +105,7 @@ function reviewSettings(settings) {
 				settings.background.push('555555');
 				settings.font.push('FFFFFF');
 				
-				console.log('Bookmarker -> the missing settings for the folder "' + folder + '" were created');
+				// console.log('Bookmarker -> the missing settings for the folder "' + folder + '" were created');
 			
 			}
 
@@ -121,7 +121,7 @@ function reviewSettings(settings) {
 			active = false;
 
 			// Browse CURRENT folders.
-			for(let folder of folders) {
+			for(let folder of user.folders) {
 
 				// Found : set 'active' to true and break the loop.
 				if(folder === savedFolder) {
@@ -159,7 +159,7 @@ function reviewSettings(settings) {
 
 		}
 
-		console.log('Bookmarker -> settings successfully reviewed.');
+		// console.log('Bookmarker -> settings successfully reviewed.');
 		resolve(settings);
 
 	});
@@ -177,7 +177,7 @@ function updateSettings(settings) {
 
 			chrome.storage.local.set(user.settings, function() {
 
-				console.log('Bookmarker -> settings updated in the local storage of the navigator.');
+				// console.log('Bookmarker -> settings updated in the local storage of the navigator.');
 				resolve();
 
 			});
@@ -203,7 +203,7 @@ function applySettings() {
 
 	}
 	
-	console.log('Bookmarker -> local settings applied');
+	// console.log('Bookmarker -> local settings applied');
 
 }
 
@@ -253,8 +253,8 @@ function sortContent() {
 	
 	var sortedArray = []; // Array for temporary storage.
 	// a. Convert each object as an array.
-	for(let i = 0, l = bookies.length; i < l; i++) {
-		let currentBookie = [bookies[i].title, bookies[i].folder, bookies[i].url];	
+	for(let i = 0, l = user.bookies.length; i < l; i++) {
+		let currentBookie = [user.bookies[i].title, user.bookies[i].folder, user.bookies[i].url];	
 		// Then store it into another array.
 		sortedArray.push(currentBookie);
 	}
@@ -265,7 +265,7 @@ function sortContent() {
 	});		
 
 	// c. Empty the initial array.
-	bookies = [];
+	user.bookies = [];
 	// d. Then recreate it.
 	for(let i = 0, l = sortedArray.length; i < l; i++) {
 		var object = {
@@ -273,14 +273,14 @@ function sortContent() {
 			'folder': sortedArray[i][1],
 			'url': sortedArray[i][2]
 		};
-		bookies.push(object);
+		user.bookies.push(object);
 	}
 	
 	// 2. FOLDERS
 
-	folders.sort();
+	user.folders.sort();
 	
-	console.log('Bookmarker -> bookies and folders ordered by name'); 
+	// console.log('Bookmarker -> bookies and folders ordered by name'); 
 
 }
 
@@ -292,21 +292,21 @@ function appendContent() {
 	UI.bookies.innerHTML = '';
 
 	// Create bookies.
-	for(let i = 0, l = bookies.length; i < l; i++) {
+	for(let i = 0, l = user.bookies.length; i < l; i++) {
 
 		let bookieElm = document.createElement('a');
-		bookieElm.setAttribute('href', bookies[i].url);
-		bookieElm.id = bookies[i].title;
+		bookieElm.setAttribute('href', user.bookies[i].url);
+		bookieElm.id = user.bookies[i].title;
 		// Set the class manually because there are sometimes spaces inside the folder name
-		bookieElm.setAttribute('class', bookies[i].folder);
+		bookieElm.setAttribute('class', user.bookies[i].folder);
 		bookieElm.setAttribute('target', '_blank');
 		bookieElm.classList.add('bookie', 'visible');
-		bookieElm.textContent = bookies[i].title;
+		bookieElm.textContent = user.bookies[i].title;
 		UI.bookies.appendChild(bookieElm);				
 
 	}
 
-	updateCounter(bookies.length);
+	updateCounter(user.bookies.length);
 
 	// 2. FOLDERS
 
@@ -314,10 +314,10 @@ function appendContent() {
 	UI.folderSelect.innerHTML = '';
 	UI.folderSelect.innerHTML = '<option selected>Tout montrer</option>';
 
-	for(let i = 0, l = folders.length; i < l; i++) {	
+	for(let i = 0, l = user.folders.length; i < l; i++) {	
 	
 		let optionElm = document.createElement('option');
-		optionElm.textContent = folders[i];
+		optionElm.textContent = user.folders[i];
 		UI.folderSelect.appendChild(optionElm);
 
 	}

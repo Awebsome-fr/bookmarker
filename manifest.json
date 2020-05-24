@@ -2,7 +2,7 @@
 	"manifest_version" : 2,
 	"name": "Bookmarker",
 	"description": "Gagnez en productivité, épargnez la planète. Avec Bookmarker, personnalisez et regroupez instantanément vos bookies (favoris) par dossier, ciblez rapidement vos adresses préférées ou partez à l'assaut du web grâce aux moteurs de recherche intégrés.",
-	"version": "1.0.4",
+	"version": "2",
 	"icons": {
 		"48": "./assets/bookmarker-logo-48px.png",
 		"96": "./assets/bookmarker-logo-96px.png"
@@ -10,7 +10,7 @@
 	"browser_action": {
 		"default_icon": "./assets/bookmarker-logo-48px.png",
 		"default_title": "Bookmarker",
-		"default_popup": "./fat/popup.html",
+		"default_popup": "./firefox-popup.html", // Replace by "firefox-popup.html" to work with Firefox.
 		"browser_style": true
 	},
 	"commands": {

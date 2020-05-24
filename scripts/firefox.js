@@ -1,0 +1,1 @@
+const favRootFolderIndex = 'toolbar_____';

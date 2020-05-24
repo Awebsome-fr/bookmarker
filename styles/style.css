@@ -1,6 +1,8 @@
 body { 
 	font-weight: normal;
+	margin: 0;
 	min-height: 100vh;
+	min-width: 700px;
 }
 body,  button, input, select { 
 	font-family: sans-serif;
@@ -134,8 +136,7 @@ nav {
 #bookies {
 	display: grid;
 	grid-gap: 1px;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	min-width: 500px;
+	grid-template-columns: repeat(3, minmax(200px, 1fr));
 }
 .bookie {
 	align-items: center;

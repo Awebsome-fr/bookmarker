@@ -12,13 +12,14 @@ const UI = {
 };
 
 var user = {
+	bookies: [],
+	folders: [],
 	settings: []
 }
 
-var bookies = [], folders = [];
 var counter = 0, foldersIndex = -1;
 
-chrome.bookmarks.getTree(
+chrome.bookmarks.getSubTree(favRootFolderIndex,
 
 	function(bookmarksTree) {
 	

@@ -16,7 +16,7 @@ Un bookie (généralement appelé favori ou marque-page) est comme **un trajet m
 
 ## Installation
 
-Rendez-vous sur [la page AMO de Bookmarker](https://addons.mozilla.org/fr/firefox/addon/awb-bookmarker/) pour ajouter l'extension à votre navigateur web. **Actuellement, seul la version desktop de Firefox prend en charge Bookmarker**.
+Rendez-vous sur [la page AMO de Bookmarker](https://addons.mozilla.org/fr/firefox/addon/awb-bookmarker/) pour ajouter l'extension à votre navigateur web.
 
 ## Mode d'emploi
 
