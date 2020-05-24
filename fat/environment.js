@@ -1,5 +1,3 @@
-var counter = 0, bookies = [], folders = [], settings;
-
 const UI = {
 	bookies: document.getElementById('bookies'),
 	counter: document.getElementById('counter'),
@@ -12,3 +10,12 @@ const UI = {
 	settings: document.getElementById('settings'),
 	sets: document.getElementById('sets')
 };
+
+var datas = {
+	bookies: [],
+	counter: 0,
+	folders: [],
+	foldersIndex: -1,
+	settings: []
+};
+
