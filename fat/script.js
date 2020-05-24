@@ -67,8 +67,26 @@ chrome.bookmarks.getTree(
 						};
 						// Close and save the settings.
 						document.getElementById('save-settings').onclick = () => {
+							
+							// Create an empty object to receive the new 
+							let newSettings =
+								{
+									folder: [],
+									background : [],
+									font: [] 
+								};
+								
+							// Target all the sets from the setting form then add their values to newSetting.
+							let userSettings = document.getElementsByClassName('set');
+							for(let i = 0, l = userSettings.length; i < l; i++) {
+								newSettings.folder.push(userSettings[i].querySelector('h4').textContent);
+								newSettings.font.push(userSettings[i].querySelector('.font').value);
+								newSettings.background.push(userSettings[i].querySelector('.background').value);
+							}
+
+							updateSettings(newSettings);
+							applySettings();
 							toggleSettings();
-							updateSettings();
 						};
 						// Close settings without saving.
 						document.getElementById('close-settings').onclick = () => {

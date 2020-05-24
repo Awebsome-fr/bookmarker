@@ -182,43 +182,10 @@ function updateSettings(settings) {
 
 			});
 
-
 		}
 
 	);
 
-}
-
-function xxxSettings() {
-
-	// Create an empty object to receive the new 
-	let newSettings =
-		{
-			folder: [],
-			background : [],
-			font: [] 
-		};
-		
-	// Target all the sets from the setting form then add their values to newSetting.
-	let userSettings = document.getElementsByClassName('set');
-	for(let i = 0, l = userSettings.length; i < l; i++) {
-		newSettings.folder.push(userSettings[i].querySelector('h4').textContent);
-		newSettings.font.push(userSettings[i].querySelector('.font').value);
-		newSettings.background.push(userSettings[i].querySelector('.background').value);
-	}
-	
-	// Overwrite settings.
-	settings = newSettings; 
-	
-	// Update the settings into the local storage then actualize the display.
-	browser.storage.local.set(settings).then(() => { 
-		
-		applySettings(settings);
-		
-		console.log('Bookmarker -> local settings updated'); 
-		
-	});
-	
 }
 
 function applySettings() {
@@ -332,6 +299,7 @@ function appendContent() {
 		bookieElm.id = bookies[i].title;
 		// Set the class manually because there are sometimes spaces inside the folder name
 		bookieElm.setAttribute('class', bookies[i].folder);
+		bookieElm.setAttribute('target', '_blank');
 		bookieElm.classList.add('bookie', 'visible');
 		bookieElm.textContent = bookies[i].title;
 		UI.bookies.appendChild(bookieElm);				
@@ -379,7 +347,7 @@ function submitQuery (search, engine) {
 		}
 
 		// Open the search results into a new tab.
-		browser.tabs.create({ url: baseUrl + search });
+		chrome.tabs.create({ url: baseUrl + search });
 
 	}
 
@@ -390,7 +358,7 @@ function submitQuery (search, engine) {
 		
 		for(let i = 0, l = activeBkElms.length; i < l; i++) {
 
-			browser.tabs.create({url: activeBkElms[i].href });
+			chrome.tabs.create({url: activeBkElms[i].href });
 		
 		}
 
