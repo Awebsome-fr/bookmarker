@@ -1,10 +1,6 @@
 {
 	"manifest_version" : 2,
 	"name": "Bookmarker",
-	"developer": {
-		"name": "Julien Wilhelm",
-		"url": "https://awebsome.fr"
-	},
 	"description": "Gagnez en productivité, épargnez la planète. Avec Bookmarker, personnalisez et regroupez instantanément vos bookies (favoris) par dossier, ciblez rapidement vos adresses préférées ou partez à l'assaut du web grâce aux moteurs de recherche intégrés.",
 	"version": "1.0.4",
 	"icons": {
@@ -14,7 +10,7 @@
 	"browser_action": {
 		"default_icon": "./assets/bookmarker-logo-48px.png",
 		"default_title": "Bookmarker",
-		"default_popup": "./min/popup.html",
+		"default_popup": "./fat/popup.html",
 		"browser_style": true
 	},
 	"commands": {

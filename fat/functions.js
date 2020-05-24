@@ -7,8 +7,8 @@ function buildDatas(element) {
 	if(!element.url) {
 
 		if(element.title != 'Barre de favoris' && element.title != 'Autres favoris') {
-			datas.folders.push(element.title);
-			datas.foldersIndex++;
+			folders.push(element.title);
+			foldersIndex++;
 		}
 	
 		// Does the current folder have a child ?
@@ -25,161 +25,173 @@ function buildDatas(element) {
 	List element in the array "bookies" with its parent folder.
 	*/
 	else {
-		element.folder = datas.folders[datas.foldersIndex];
-		datas.bookies.push(element);
+		element.folder = folders[foldersIndex];
+		bookies.push(element);
 	}
 
 }
 
 function checkSettings() {
 
-	return new Promise(
+	// chrome.storage.local.clear();
+
+	return new Promise((resolve, reject) => {
 		
-		function(resolve, reject) {
+		chrome.storage.local.get(null, function(settings) {
+
+			if(settings.folder === undefined) {
+				console.log('Bookmarker -> settings not found in the local storage of the navigator.');
+				reject(undefined);
+			}
+
+			else {
+				console.log('Bookmarker -> settings found in the local storage of the navigator.');
+				resolve(settings);
+			}
+
+		});
+
+	});
+
+}
+
+function initSettings() {
+
+	return new Promise((resolve, reject) => {
+
+		let settings = {
+			folder: [],
+			background : [],
+			font: [] 
+		}
+
+		chrome.storage.local.set(
+			settings,			
+			() => { 
+				console.log('Bookmarker -> settings initialized.'); 
+				resolve(settings);
+			}
+		);
+
+	});
+
+}
+
+function reviewSettings(settings) {
+
+	return new Promise((resolve, reject) => {
 		
-			chrome.storage.local.get(null, function(settings) {
+		// First : check if local setting are sufficiently defined by adding missing folders.
+		let found;
+		
+		// Browse CURRENT folders.
+		for(let folder of folders) {			
+			
+			found = false;
 
-				// Local settings not found ? Create start settings !
-				if(settings.folder === undefined) {
-					
-					chrome.storage.local.set(
-						
-						{
-							folder: [],
-							background : [],
-							font: [] 
-						},
-						
-						function() { 
-							
-							// FOR DEBUGGING ONLY
-							// console.log('Bookmarker -> local settings created.'); 
-						
-						}
-
-					);
-
+			// Browse STORED folders.
+			for(let savedFolder of settings.folder) {
+				// Found : set 'found' to true and break the loop.
+				if(savedFolder === folder) {
+					found = true;
+					break;
 				}
+			}	
+			
+			// Missing ('found' is always false) : complete statement needed.
+			if(!found) {
+				
+				settings.folder.push(folder);
+				settings.background.push('555555');
+				settings.font.push('FFFFFF');
+				
+				console.log('Bookmarker -> the missing settings for the folder "' + folder + '" were created');
+			
+			}
+
+		}
+
+		// Second : check if there are some unnecessary folders to remove.
+		let active;
+		let indexesToRemove = [];
+
+		// Browse STORED folders
+		for(let savedFolder of settings.folder) {
+
+			active = false;
+
+			// Browse CURRENT folders.
+			for(let folder of folders) {
+
+				// Found : set 'active' to true and break the loop.
+				if(folder === savedFolder) {
+					active = true;
+					break;
+				}
+
+			}
+
+			// Not found ('active' is always false) : it is an unnecessary folder to remove.
+			if(!active) {
+
+				indexesToRemove.push(settings.folder.indexOf(savedFolder));		
+
+				// FOR DEBUGGING ONLY
+				// console.log('Bookmarker -> Useless settings for the folder "' + savedFolder + '" found');
+				
+			}
+
+		}
+
+		// Third : remove unnecessary folders.
+		let compArray = 0;
+
+		for(let indexToRemove of indexesToRemove) {
+
+			settings.folder.splice(indexToRemove + compArray, 1);
+			settings.background.splice(indexToRemove + compArray, 1);
+			settings.font.splice(indexToRemove + compArray, 1);
+
+			// FOR DEBUGGING ONLY
+			// console.log('Bookmarker -> Useless settings for the folder "' + settings.folder[indexToRemove + compArray] + '" were deleted');
+
+			compArray--;
+
+		}
+
+		console.log('Bookmarker -> settings successfully reviewed.');
+		resolve(settings);
+
+	});
+
+}								
+
+function updateSettings(settings) {
+
+	return new Promise(
+
+		function(resolve, reject) {
+
+			// Four : update the local storage.
+			user.settings = settings;
+
+			chrome.storage.local.set(user.settings, function() {
+
+				console.log('Bookmarker -> settings updated in the local storage of the navigator.');
+				resolve();
 
 			});
 
-			resolve('Bookmarker -> local settings successfully checked.');
 
 		}
+
 	);
 
 }
 
-function reviewSettings() {
+function xxxSettings() {
 
-	return new Promise(
-		
-		function(resolve, reject) {
-		
-			chrome.storage.local.get(null, function(loadedSettings) {
-
-				// First : check if local setting are sufficiently defined by adding missing folders.
-				let found;
-				
-				// Browse CURRENT folders.
-				for(let folder of datas.folders) {			
-					
-					found = false;
-
-					// Browse STORED folders.
-					for(let savedFolder of loadedSettings.folder) {
-						// Found : set 'found' to true and break the loop.
-						if(savedFolder === folder) {
-							found = true;
-							break;
-						}
-					}	
-					
-					// Missing ('found' is always false) : complete statement needed.
-					if(!found) {
-						
-						loadedSettings.folder.push(folder);
-						loadedSettings.background.push('555555');
-						loadedSettings.font.push('FFFFFF');
-						
-						// FOR DEBUGGING ONLY
-						// console.log('Bookmarker -> the missing settings for the folder "' + folder + '" were created');
-					
-					}
-
-				}
-
-				// Second : check if there are some unnecessary folders to remove.
-				let active;
-				let indexesToRemove = [];
-
-				// Browse STORED folders
-				for(let savedFolder of loadedSettings.folder) {
-
-					active = false;
-
-					// Browse CURRENT folders.
-					for(let folder of datas.folders) {
-
-						// Found : set 'active' to true and break the loop.
-						if(folder === savedFolder) {
-							active = true;
-							break;
-						}
-
-					}
-
-					// Not found ('active' is always false) : it is an unnecessary folder to remove.
-					if(!active) {
-
-						indexesToRemove.push(loadedSettings.folder.indexOf(savedFolder));		
-
-						// FOR DEBUGGING ONLY
-						// console.log('Bookmarker -> Useless settings for the folder "' + savedFolder + '" found');
-						
-					}
-
-				}
-
-				// Third : remove unnecessary folders.
-				let compArray = 0;
-
-				for(let indexToRemove of indexesToRemove) {
-
-					loadedSettings.folder.splice(indexToRemove + compArray, 1);
-					loadedSettings.background.splice(indexToRemove + compArray, 1);
-					loadedSettings.font.splice(indexToRemove + compArray, 1);
-
-					// FOR DEBUGGING ONLY
-					// console.log('Bookmarker -> Useless settings for the folder "' + loadedSettings.folder[indexToRemove + compArray] + '" were deleted');
-
-					compArray--;
-
-				}
-
-				// Four : update the local storage.
-				datas.settings = loadedSettings;
-
-				chrome.storage.local.set(datas.settings, function() {
-
-					// FOR DEBUGGING ONLY
-					// console.log('Bookmarker -> local settings reviewed');
-
-				});
-
-			});
-
-			resolve('Bookmarker -> local settings successfully reviewed.');
-
-		}
-
-	);
-
-}								
-
-function updateSettings() {
-
-	// Create an empty object to receive the new datas.
+	// Create an empty object to receive the new 
 	let newSettings =
 		{
 			folder: [],
@@ -196,14 +208,13 @@ function updateSettings() {
 	}
 	
 	// Overwrite settings.
-	datas.settings = newSettings; 
+	settings = newSettings; 
 	
 	// Update the settings into the local storage then actualize the display.
-	browser.storage.local.set(datas.settings).then(() => { 
+	browser.storage.local.set(settings).then(() => { 
 		
-		applySettings(datas.settings);
+		applySettings(settings);
 		
-		// FOR DEBUGGING ONLY
 		console.log('Bookmarker -> local settings updated'); 
 		
 	});
@@ -212,20 +223,19 @@ function updateSettings() {
 
 function applySettings() {
 	
-	for(let i = 0, l = datas.settings.folder.length; i < l; i++) {
+	for(let i = 0, l = user.settings.folder.length; i < l; i++) {
 		
-		let bookies = document.getElementsByClassName(datas.settings.folder[i]);
+		let bookies = document.getElementsByClassName(user.settings.folder[i]);
 		
-		for(let j = 0, k = datas.bookies.length; j < k; j++) {
+		for(let j = 0, k = bookies.length; j < k; j++) {
 
-			datas.bookies[j].style.color = '#' + datas.settings.font[i];
-			datas.bookies[j].style.backgroundColor = '#' + datas.settings.background[i];
+			bookies[j].style.color = '#' + user.settings.font[i];
+			bookies[j].style.backgroundColor = '#' + user.settings.background[i];
 		
 		}
 
 	}
 	
-	// FOR DEBUGGING ONLY
 	console.log('Bookmarker -> local settings applied');
 
 }
@@ -263,7 +273,7 @@ function filterContent (input, folder) {
 		if(filteredBkElms[i].id.toLowerCase().indexOf(input.toLowerCase()) >= 0) {
 			filteredBkElms[i].classList.remove('invisible');
 			filteredBkElms[i].classList.add('visible');
-			updateCounter(++datas.counter); 
+			updateCounter(++counter); 
 		}
 	
 	}
@@ -276,8 +286,8 @@ function sortContent() {
 	
 	var sortedArray = []; // Array for temporary storage.
 	// a. Convert each object as an array.
-	for(let i = 0, l = datas.bookies.length; i < l; i++) {
-		let currentBookie = [datas.bookies[i].title, datas.bookies[i].folder, datas.bookies[i].url];	
+	for(let i = 0, l = bookies.length; i < l; i++) {
+		let currentBookie = [bookies[i].title, bookies[i].folder, bookies[i].url];	
 		// Then store it into another array.
 		sortedArray.push(currentBookie);
 	}
@@ -288,7 +298,7 @@ function sortContent() {
 	});		
 
 	// c. Empty the initial array.
-	datas.bookies = [];
+	bookies = [];
 	// d. Then recreate it.
 	for(let i = 0, l = sortedArray.length; i < l; i++) {
 		var object = {
@@ -296,14 +306,13 @@ function sortContent() {
 			'folder': sortedArray[i][1],
 			'url': sortedArray[i][2]
 		};
-		datas.bookies.push(object);
+		bookies.push(object);
 	}
 	
 	// 2. FOLDERS
 
-	datas.folders.sort();
+	folders.sort();
 	
-	// FOR DEBUGGING ONLY
 	console.log('Bookmarker -> bookies and folders ordered by name'); 
 
 }
@@ -316,20 +325,20 @@ function appendContent() {
 	UI.bookies.innerHTML = '';
 
 	// Create bookies.
-	for(let i = 0, l = datas.bookies.length; i < l; i++) {
+	for(let i = 0, l = bookies.length; i < l; i++) {
 
 		let bookieElm = document.createElement('a');
-		bookieElm.setAttribute('href', datas.bookies[i].url);
-		bookieElm.id = datas.bookies[i].title;
+		bookieElm.setAttribute('href', bookies[i].url);
+		bookieElm.id = bookies[i].title;
 		// Set the class manually because there are sometimes spaces inside the folder name
-		bookieElm.setAttribute('class', datas.bookies[i].folder);
+		bookieElm.setAttribute('class', bookies[i].folder);
 		bookieElm.classList.add('bookie', 'visible');
-		bookieElm.textContent = datas.bookies[i].title;
+		bookieElm.textContent = bookies[i].title;
 		UI.bookies.appendChild(bookieElm);				
 
 	}
 
-	updateCounter(datas.bookies.length);
+	updateCounter(bookies.length);
 
 	// 2. FOLDERS
 
@@ -337,10 +346,10 @@ function appendContent() {
 	UI.folderSelect.innerHTML = '';
 	UI.folderSelect.innerHTML = '<option selected>Tout montrer</option>';
 
-	for(let i = 0, l = datas.folders.length; i < l; i++) {	
+	for(let i = 0, l = folders.length; i < l; i++) {	
 	
 		let optionElm = document.createElement('option');
-		optionElm.textContent = datas.folders[i];
+		optionElm.textContent = folders[i];
 		UI.folderSelect.appendChild(optionElm);
 
 	}
@@ -409,7 +418,7 @@ function resetSelection() {
 
 function updateCounter (value = 0) {
 
-	datas.counter = value;
+	counter = value;
 	let countMess = counter > 1 ? value + ' bookies' : value + ' bookie';
 	UI.counter.textContent = countMess;
 	UI.info.textContent = counter > 0 ? 
@@ -422,7 +431,7 @@ function createForm () {
 
 	UI.sets.innerHTML = '';
 
-	for(let i = 0, l = datas.settings.folder.length; i < l; i++) {
+	for(let i = 0, l = user.settings.folder.length; i < l; i++) {
 	
 		// Create one set by folder.
 		let setElm = document.createElement('div');
@@ -430,9 +439,9 @@ function createForm () {
 
 		// With a title.
 		let titleElm = document.createElement('h4');
-		titleElm.textContent = datas.settings.folder[i];
-		titleElm.style.color = '#' + datas.settings.font[i]; 
-		titleElm.style.backgroundColor = '#' + datas.settings.background[i];
+		titleElm.textContent = user.settings.folder[i];
+		titleElm.style.color = '#' + user.settings.font[i]; 
+		titleElm.style.backgroundColor = '#' + user.settings.background[i];
 		setElm.appendChild(titleElm);
 
 		// And two text fields where the colors could be previewed.
@@ -448,7 +457,7 @@ function createForm () {
 			inputElm.setAttribute('type', 'text');
 			inputElm.setAttribute('required', true);
 			inputElm.classList.add(field, 'field');
-			inputElm.value = datas.settings[field][i];
+			inputElm.value = user.settings[field][i];
 			inputElm.setAttribute('pattern', '[0-9a-fA-F]{6}');
 			inputElm.oninput = (e) => {
 				let targetElm = e.target.parentNode.querySelector('h4');
