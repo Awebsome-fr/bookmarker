@@ -3,7 +3,7 @@
 	"name": "Bookmarker",
 	"short_name": "Bookmarker",
 	"description": "Gagnez en productivité, épargnez la planète. Avec Bookmarker, maitrisez enfin vos bookies (favoris) et partez à l'assaut du web !",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"icons": {
 		"48": "./assets/bookmarker-48px.png",
 		"96": "./assets/bookmarker-96px.png",

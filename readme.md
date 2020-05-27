@@ -16,7 +16,17 @@ Un bookie (généralement appelé favori ou marque-page) est comme **un trajet m
 
 ## Installation
 
-Rendez-vous sur [la page AMO de Bookmarker](https://addons.mozilla.org/fr/firefox/addon/awb-bookmarker/) pour ajouter l'extension à votre navigateur web.
+### Vous utilisez Firefox
+
+Rendez-vous sur [la page AMO de Bookmarker](https://addons.mozilla.org/fr/firefox/addon/awb-bookmarker/) et cliquez sur le bouton "Ajouter à Firefox" pour ajouter l'extension à Firefox.
+
+### Vous utilisez Chrome
+
+Rendez-vous sur [la page Chrome Web Store de Bookmarker](https://chrome.google.com/webstore/detail/bookmarker/ijghckhmffndoockcillicjgdgldbgpc) et cliquez sur le bouton "Ajouter à Chrome" pour ajouter l'extension à Chrome.
+
+### Vous utilisez un autre navigateur
+
+Si votre navigateur web est un dérivé de Chrome, il y a de fortes chances pour que Bookmarker soit compatible avec ce dernier. Le cas échéant, une recherche telle que "Installer une extension Chrome sur [NOM DE VOTRE NAVIGATEUR]" devrait pouvoir vous donner accès à une procédure détaillée.
 
 ## Mode d'emploi
 
@@ -32,7 +42,7 @@ Cliquez sur un bookie pour l'ouvrir dans un nouvel onglet ou appuyer sur [Entré
 
 Saisissez votre requête dans le champ de recherche puis sélectionnez Ecosia, Qwant, DuckDuckGo ou Google pour rechercher sur le web. En l'absence de bookies, pressez simplement [Entrée] depuis le champ de recherche pour utiliser Ecosia, défini par défaut. **Ces moteurs de recherche ont chacun leurs particularités ; les résultats qu'ils proposent sont également différents**. A vous d'utiliser celui qui répond le mieux à vos attentes.
 
-### Astuces ###
+### Astuces
 
 Naviguez au clavier pour gagner du temps !
 
@@ -52,4 +62,4 @@ Mes valeurs font écho aux vôtres ?
 
 ## Données personnelles
 
-Par respect pour votre vie privée, Bookmarker ne collecte **aucune** donnée à votre sujet. Vérifiez-le par vous-même : [le code source de l'extension est sur GitHub](https://github.com/AwebsomeFr/bookmarker) ;).
+Par respect pour votre vie privée, Bookmarker ne collecte **aucune** donnée à votre sujet. Vérifiez-le par vous-même : [le code source de l'extension est disponible sur GitHub](https://github.com/AwebsomeFr/bookmarker) ;).
