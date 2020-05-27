@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -9,156 +7,117 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   sodipodi:docname="bookmarker-logo.svg"
+   inkscape:version="1.0 (1.0+r73+1)"
+   id="svg926"
    version="1.1"
-   id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="dessin.svg"
-   inkscape:export-filename="C:\Users\walkerfromwest\Downloads\image.png"
-   inkscape:export-xdpi="83"
-   inkscape:export-ydpi="83">
+   viewBox="0 0 52.916668 52.916668"
+   height="52.916668mm"
+   width="52.916668mm">
   <defs
-     id="defs2" />
+     id="defs920" />
   <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="3.4671247"
-     inkscape:cx="98.880413"
-     inkscape:cy="95.073995"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     inkscape:window-width="1600"
-     inkscape:window-height="854"
-     inkscape:window-x="-4"
-     inkscape:window-y="-4"
      inkscape:window-maximized="1"
-     inkscape:measure-start="0,0"
-     inkscape:measure-end="0,0"
-     showguides="true"
-     inkscape:guide-bbox="true">
-    <sodipodi:guide
-       position="6.6145834,36.38021"
-       orientation="1,0"
-       id="guide8718"
-       inkscape:locked="false"
-       inkscape:label=""
-       inkscape:color="rgb(0,0,255)" />
-    <sodipodi:guide
-       position="46.302083,44.506698"
-       orientation="1,0"
-       id="guide8720"
-       inkscape:locked="false"
-       inkscape:label=""
-       inkscape:color="rgb(0,0,255)" />
-    <sodipodi:guide
-       position="6.6145834,6.6145834"
-       orientation="0,1"
-       id="guide8722"
-       inkscape:locked="false"
-       inkscape:label=""
-       inkscape:color="rgb(0,0,255)" />
-    <sodipodi:guide
-       position="42.805803,46.302083"
-       orientation="0,1"
-       id="guide8724"
-       inkscape:locked="false"
-       inkscape:label=""
-       inkscape:color="rgb(0,0,255)" />
-  </sodipodi:namedview>
+     inkscape:window-y="0"
+     inkscape:window-x="0"
+     inkscape:window-height="843"
+     inkscape:window-width="1600"
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="58.752525"
+     inkscape:cx="211.13208"
+     inkscape:zoom="0.98994949"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
   <metadata
-     id="metadata5">
+     id="metadata923">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="tuile"
-     inkscape:groupmode="layer"
      id="layer1"
-     style="opacity:0.5">
+     inkscape:groupmode="layer"
+     inkscape:label="Calque 1">
     <rect
-       style="opacity:1;fill:#01ca86;fill-opacity:0.82776352;fill-rule:evenodd;stroke:none;stroke-width:0.625;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
+       style="opacity:0.999896;fill:#01ca86;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.624999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:markers fill stroke"
        id="rect4753"
        width="52.916668"
        height="52.916668"
-       x="-1.4210855e-014"
-       y="244.08334"
-       inkscape:export-xdpi="83"
-       inkscape:export-ydpi="83" />
-  </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="oo"
-     style="display:inline;opacity:1">
+       x="-2.0996094e-09"
+       y="-1.7529296e-06"
+       inkscape:export-xdpi="46.080002"
+       inkscape:export-ydpi="46.080002"
+       inkscape:export-filename="/home/awebsome/Téléchargements/ink.png" />
+    <text
+       inkscape:export-ydpi="46.080002"
+       inkscape:export-xdpi="46.080002"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.2505px;line-height:6.76852px;font-family:Questrial;-inkscape-font-specification:Questrial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:0.490196;stroke:none;stroke-width:1.79084"
+       x="5.1659355"
+       y="48.217094"
+       id="text1001"><tspan
+         sodipodi:role="line"
+         x="5.1659355"
+         y="48.217094"
+         id="tspan999"
+         style="stroke-width:1.79084"><tspan
+           x="5.1659355"
+           y="48.217094"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.6945px;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.490196;stroke-width:1.79084"
+           id="tspan997">B</tspan></tspan></text>
     <g
-       id="g8905"
-       style="fill:#ffffff;fill-opacity:0.78431374">
-      <g
-         transform="matrix(0.74782116,0,0,0.74782116,-53.958035,202.91172)"
-         id="g8591"
-         style="opacity:1;fill:#ffffff;fill-opacity:0.78431374">
-        <flowRoot
-           xml:space="preserve"
-           id="flowRoot8563"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.9574666px;line-height:3.77952766px;font-family:Questrial;-inkscape-font-specification:Questrial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:0.78431374;stroke:none"
-           transform="matrix(0.9316053,0,0,0.9316053,-29.236746,-12.428191)"><flowRegion
-             id="flowRegion8559"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374"><rect
-               id="rect8557"
-               width="60.714275"
-               height="74.285728"
-               x="138.57143"
-               y="113.94826"
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374" /></flowRegion><flowPara
-             id="flowPara8561"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333206px;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374">O</flowPara></flowRoot>        <flowRoot
-           transform="matrix(0.9316053,0,0,0.9316053,-37.174251,-20.365696)"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.9574666px;line-height:3.77952766px;font-family:Questrial;-inkscape-font-specification:Questrial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:0.78431374;stroke:none"
-           id="flowRoot8581"
-           xml:space="preserve"><flowRegion
+       inkscape:export-ydpi="46.080002"
+       inkscape:export-xdpi="46.080002"
+       style="fill:#ffffff;fill-opacity:0.784314"
+       id="g8591"
+       transform="matrix(0.74782116,0,0,0.74782116,-54.388912,-39.560818)">
+      <flowRoot
+         transform="matrix(0.9316053,0,0,0.9316053,-29.236746,-12.428191)"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.95747px;line-height:3.77953px;font-family:Questrial;-inkscape-font-specification:Questrial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:0.784314;stroke:none"
+         id="flowRoot8563"
+         xml:space="preserve"><flowRegion
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.784314"
+           id="flowRegion8559"><rect
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374"
-             id="flowRegion8577"><rect
-               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374"
-               y="113.94826"
-               x="138.57143"
-               height="74.285728"
-               width="60.714275"
-               id="rect8575" /></flowRegion><flowPara
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333206px;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374"
-             id="flowPara8579">O</flowPara></flowRoot>      </g>
+             y="113.94826"
+             x="138.57143"
+             height="74.285728"
+             width="60.714275"
+             id="rect8557" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.784314"
+           id="flowPara8561">O</flowPara></flowRoot>
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot8581"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.95747px;line-height:3.77953px;font-family:Questrial;-inkscape-font-specification:Questrial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:0.784314;stroke:none"
+         transform="matrix(0.9316053,0,0,0.9316053,-37.174251,-20.365696)"><flowRegion
+           id="flowRegion8577"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.784314"><rect
+             id="rect8575"
+             width="60.714275"
+             height="74.285728"
+             x="138.57143"
+             y="113.94826"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.78431374" /></flowRegion><flowPara
+           id="flowPara8579"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.3333px;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.784314">O</flowPara></flowRoot>
     </g>
   </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer4"
-     inkscape:label="b">
-    <flowRoot
-       xml:space="preserve"
-       id="flowRoot8665"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.9574666px;line-height:3.77952766px;font-family:Questrial;-inkscape-font-specification:Questrial;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;opacity:1;fill:#ffffff;fill-opacity:0.49019608;stroke:none"
-       transform="matrix(1.7908352,0,0,1.7908352,-242.65453,65.175503)"><flowRegion
-         id="flowRegion8661"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.49019608"><rect
-           id="rect8659"
-           width="60.714275"
-           height="74.285728"
-           x="138.57143"
-           y="113.94826"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.49019608" /></flowRegion><flowPara
-         id="flowPara8663"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333206px;font-family:Questrial;-inkscape-font-specification:Questrial;fill:#ffffff;fill-opacity:0.49019608">B</flowPara></flowRoot>  </g>
 </svg>
