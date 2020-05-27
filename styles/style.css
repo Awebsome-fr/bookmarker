@@ -1,7 +1,6 @@
 body { 
 	font-weight: normal;
 	margin: 0;
-	min-height: 100vh;
 	min-width: 700px;
 }
 body,  button, input, select { 
@@ -133,7 +132,7 @@ nav {
 }
 
 /* bookies */
-#bookies {
+#bookies-container {
 	display: grid;
 	grid-gap: 1px;
 	grid-template-columns: repeat(3, minmax(200px, 1fr));
@@ -150,10 +149,6 @@ nav {
 #settings {
 	background-color: #fff;
 	padding: 0 10px 10px 10px;
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 2;
 }
 #sets { 
 	display: grid;
@@ -189,12 +184,6 @@ nav {
 #reset:hover, .engine:hover, .engine:focus { 
 	transform: scale(1.5);
 }
-.closed { 
-	transform: scale(0);
-}
-.opened {
-	transform: initial;
-}
-.invisible, #bookies.invisible { 
+#bookies.hidden, #settings.hidden, .invisible { 
 	display: none;
 }

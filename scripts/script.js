@@ -1,5 +1,5 @@
 const UI = {
-	bookies: document.getElementById('bookies'),
+	bookies: document.getElementById('bookies-container'),
 	counter: document.getElementById('counter'),
 	engines: document.getElementsByClassName('engine'),
 	folderForm: document.getElementById('folder-form'),
@@ -7,7 +7,6 @@ const UI = {
 	info: document.getElementById('info'),
 	searchForm: document.getElementById('search-form'),
 	searchInput: document.getElementById('search-input'),
-	settings: document.getElementById('settings'),
 	sets: document.getElementById('sets')
 };
 

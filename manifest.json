@@ -12,7 +12,7 @@
 	"browser_action": {
 		"default_icon": "./assets/bookmarker-48px.png",
 		"default_title": "Bookmarker",
-		"default_popup": "./chrome-popup.html",
+		"default_popup": "./firefox-popup.html",
 		"browser_style": true
 	},
 	"commands": {

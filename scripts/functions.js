@@ -209,8 +209,8 @@ function applySettings() {
 
 function toggleSettings () {
 
-	UI.settings.classList.toggle("opened");
-	UI.bookies.classList.toggle("invisible");
+	document.getElementById('bookies').classList.toggle("hidden");
+	document.getElementById('settings').classList.toggle("hidden");
 
 }
 
